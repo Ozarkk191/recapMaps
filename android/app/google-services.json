@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "366223396006",
+    "project_id": "new-recapmaps",
+    "storage_bucket": "new-recapmaps.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:366223396006:android:296955913a5bcebb297867",
+        "android_client_info": {
+          "package_name": "com.example.recap_maps"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "366223396006-si7uv7o664tui0v4bemi8l7r08mkndck.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAF8LHoDt22rdsWj4B9LOZfvrYC18zoaKY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "366223396006-si7uv7o664tui0v4bemi8l7r08mkndck.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
