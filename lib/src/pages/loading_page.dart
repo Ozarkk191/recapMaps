@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
+import 'package:permission_handler/permission_handler.dart';
 import 'package:recap_maps/src/pages/home_page.dart';
 import 'package:recap_maps/src/pages/maps_page.dart';
 
@@ -16,15 +17,18 @@ class LoadingPage extends StatefulWidget {
 class _LoadingPageState extends State<LoadingPage> {
   @override
   void initState() {
-    getCurrentLocation();
+    checkPermission();
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
+    return Scaffold(
       body: Center(
-        child: Text("LOGO"),
+        child: Image.asset(
+          "assets/logo.png",
+          width: 250,
+        ),
       ),
     );
   }
@@ -47,5 +51,18 @@ class _LoadingPageState extends State<LoadingPage> {
         print(e);
       }
     });
+  }
+
+  void checkPermission() async {
+    await Permission.locationWhenInUse.serviceStatus;
+
+    final status = await Permission.locationWhenInUse.request();
+    if (status == PermissionStatus.granted) {
+      getCurrentLocation();
+    } else if (status == PermissionStatus.denied) {
+      Navigator.pop(context);
+    } else if (status == PermissionStatus.permanentlyDenied) {
+      Navigator.pop(context);
+    }
   }
 }

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_phone_direct_caller/flutter_phone_direct_caller.dart';
 import 'package:recap_maps/src/model/shop_model.dart';
 import 'package:recap_maps/src/widgets/button/rcm_button.dart';
@@ -21,6 +20,10 @@ class _ShopDetailState extends State<ShopDetail> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: const Text("รายละเอียดร้านปะยาง"),
+        centerTitle: true,
+      ),
       body: SafeArea(
         child: SizedBox(
           width: MediaQuery.of(context).size.width,

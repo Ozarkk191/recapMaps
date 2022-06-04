@@ -112,6 +112,10 @@ class _RegisterPageState extends State<RegisterPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: const Text("สมัครเป็นร้านปะยาง"),
+        centerTitle: true,
+      ),
       body: SafeArea(
         child: Stack(
           children: [
@@ -121,7 +125,10 @@ class _RegisterPageState extends State<RegisterPage> {
                 child: Column(
                   children: [
                     const SizedBox(height: 50),
-                    const Text("LOGO"),
+                    Image.asset(
+                      "assets/logo.png",
+                      width: 150,
+                    ),
                     const SizedBox(height: 50),
                     RCMTextfield(
                       controller: email,

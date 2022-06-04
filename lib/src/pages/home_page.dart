@@ -17,16 +17,22 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: const Text("เมนูหลัก"),
+        centerTitle: true,
+      ),
       body: SafeArea(
         child: SizedBox(
           width: MediaQuery.of(context).size.width,
           child: Column(
             children: [
               const SizedBox(height: 50),
-              const SizedBox(
-                height: 80,
+              SizedBox(
                 child: Center(
-                  child: Text("LOGO"),
+                  child: Image.asset(
+                    "assets/logo.png",
+                    width: 150,
+                  ),
                 ),
               ),
               const SizedBox(height: 50),

@@ -5,6 +5,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:recap_maps/src/model/shop_model.dart';
+import 'package:recap_maps/src/pages/admin/shop_list.dart';
 import 'package:recap_maps/src/pages/shop/shop_detail.dart';
 import 'package:recap_maps/src/widgets/button/rcm_button.dart';
 import 'package:recap_maps/src/widgets/textfield/rcm_textfield.dart';
@@ -53,13 +54,22 @@ class _LoginPageState extends State<LoginPage> {
             .then((value) {
           ShopModel shop =
               ShopModel.fromJson(jsonDecode(jsonEncode(value.data())));
-          Navigator.pushReplacement(
-            context,
-            MaterialPageRoute(
-              builder: (context) =>
-                  ShopDetail(shop: shop, myUid: user.user!.uid),
-            ),
-          );
+          if (shop.role == "Admin") {
+            Navigator.pushReplacement(
+              context,
+              MaterialPageRoute(
+                builder: (context) => const ShopListPage(),
+              ),
+            );
+          } else {
+            Navigator.pushReplacement(
+              context,
+              MaterialPageRoute(
+                builder: (context) =>
+                    ShopDetail(shop: shop, myUid: user.user!.uid),
+              ),
+            );
+          }
         });
       });
     }
@@ -68,6 +78,10 @@ class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: const Text("เข้าสู่ระบบ"),
+        centerTitle: true,
+      ),
       body: Stack(
         children: [
           SizedBox(
@@ -75,7 +89,10 @@ class _LoginPageState extends State<LoginPage> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                const Text("LOGO"),
+                Image.asset(
+                  "assets/logo.png",
+                  width: 150,
+                ),
                 const SizedBox(height: 100),
                 RCMTextfield(
                   controller: email,

@@ -70,6 +70,10 @@ class _MapsPageState extends State<MapsPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: const Text("ค้นหาร้านปะยาง"),
+        centerTitle: true,
+      ),
       body: SafeArea(
         child: GoogleMap(
           myLocationEnabled: true,
