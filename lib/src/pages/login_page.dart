@@ -86,30 +86,33 @@ class _LoginPageState extends State<LoginPage> {
         children: [
           SizedBox(
             width: MediaQuery.of(context).size.width,
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Image.asset(
-                  "assets/logo.png",
-                  width: 150,
-                ),
-                const SizedBox(height: 100),
-                RCMTextfield(
-                  controller: email,
-                  hintText: "Username",
-                ),
-                const SizedBox(height: 20),
-                RCMTextfield(
-                  controller: password,
-                  obscureText: true,
-                  hintText: "Password",
-                ),
-                const SizedBox(height: 20),
-                RCMButton(
-                  title: "เข้าสู่ระบบ",
-                  onTap: login,
-                ),
-              ],
+            child: SingleChildScrollView(
+              child: Column(
+                children: [
+                  const SizedBox(height: 100),
+                  Image.asset(
+                    "assets/logo.png",
+                    width: 150,
+                  ),
+                  const SizedBox(height: 100),
+                  RCMTextfield(
+                    controller: email,
+                    hintText: "Username",
+                    keyboardType: TextInputType.emailAddress,
+                  ),
+                  const SizedBox(height: 20),
+                  RCMTextfield(
+                    controller: password,
+                    obscureText: true,
+                    hintText: "Password",
+                  ),
+                  const SizedBox(height: 20),
+                  RCMButton(
+                    title: "เข้าสู่ระบบ",
+                    onTap: login,
+                  ),
+                ],
+              ),
             ),
           ),
           Visibility(

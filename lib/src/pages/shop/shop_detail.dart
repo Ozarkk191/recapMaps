@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_phone_direct_caller/flutter_phone_direct_caller.dart';
 import 'package:recap_maps/src/model/shop_model.dart';
+import 'package:recap_maps/src/pages/shop/shop_edit_detail.dart';
 import 'package:recap_maps/src/widgets/button/rcm_button.dart';
 
 class ShopDetail extends StatefulWidget {
@@ -85,7 +86,16 @@ class _ShopDetailState extends State<ShopDetail> {
                 visible: widget.myUid == widget.shop.uid,
                 child: RCMButton(
                   title: "แก้ไขรายละเอียดราย",
-                  onTap: () {},
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => ShopEditDetail(
+                          shop: widget.shop,
+                        ),
+                      ),
+                    );
+                  },
                 ),
               ),
             ],

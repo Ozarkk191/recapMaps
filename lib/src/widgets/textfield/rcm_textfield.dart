@@ -5,6 +5,8 @@ class RCMTextfield extends StatelessWidget {
   final String hintText;
   final bool enabled;
   final bool obscureText;
+  final TextInputType keyboardType;
+  final int? maxLength;
 
   const RCMTextfield({
     Key? key,
@@ -12,6 +14,8 @@ class RCMTextfield extends StatelessWidget {
     this.hintText = "",
     this.enabled = true,
     this.obscureText = false,
+    this.keyboardType = TextInputType.text,
+    this.maxLength,
   }) : super(key: key);
 
   @override
@@ -29,11 +33,14 @@ class RCMTextfield extends StatelessWidget {
       child: TextField(
         controller: controller,
         enabled: enabled,
+        maxLength: maxLength,
         obscureText: obscureText,
+        keyboardType: keyboardType,
         textAlign: TextAlign.center,
         decoration: InputDecoration(
           border: InputBorder.none,
           hintText: hintText,
+          counterText: "",
           contentPadding: const EdgeInsets.fromLTRB(20, 0, 20, 0),
         ),
       ),

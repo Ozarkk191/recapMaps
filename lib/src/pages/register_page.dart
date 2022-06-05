@@ -133,6 +133,7 @@ class _RegisterPageState extends State<RegisterPage> {
                     RCMTextfield(
                       controller: email,
                       hintText: "Email",
+                      keyboardType: TextInputType.emailAddress,
                     ),
                     const SizedBox(height: 20),
                     RCMTextfield(
@@ -154,6 +155,8 @@ class _RegisterPageState extends State<RegisterPage> {
                     RCMTextfield(
                       controller: shopPhone,
                       hintText: "เบอร์โทรร้าน",
+                      maxLength: 10,
+                      keyboardType: TextInputType.number,
                     ),
                     const SizedBox(height: 20),
                     RCMTextfield(
