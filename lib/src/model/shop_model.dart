@@ -7,6 +7,7 @@ class ShopModel {
   String? close;
   String? uid;
   String? role;
+  bool? approve;
   double? latitude;
   double? longitude;
 
@@ -21,6 +22,7 @@ class ShopModel {
     this.longitude,
     this.uid,
     this.role,
+    this.approve,
   });
 
   ShopModel.fromJson(Map<String, dynamic> json) {
@@ -34,6 +36,7 @@ class ShopModel {
     longitude = json['longitude'];
     uid = json['uid'];
     role = json['role'];
+    approve = json['approve'];
   }
 
   Map<String, dynamic> toJson() {
@@ -48,6 +51,7 @@ class ShopModel {
     data['longitude'] = longitude;
     data['uid'] = uid;
     data['role'] = role;
+    data['approve'] = approve;
     return data;
   }
 }

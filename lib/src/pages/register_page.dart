@@ -88,6 +88,7 @@ class _RegisterPageState extends State<RegisterPage> {
         longitude: widget.position.longitude,
         uid: user.user!.uid,
         role: "Shop",
+        approve: false,
       );
       FirebaseFirestore firestore = FirebaseFirestore.instance;
       firestore

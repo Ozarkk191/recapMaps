@@ -23,7 +23,9 @@ class _ShopListPageState extends State<ShopListPage> {
       for (var doc in querySnapshot.docs) {
         ShopModel shop = ShopModel.fromJson(jsonDecode(jsonEncode(doc.data())));
         if (shop.role == "Shop") {
-          shopList.add(shop);
+          if (shop.approve!) {
+            shopList.add(shop);
+          }
         }
       }
     });
@@ -43,78 +45,82 @@ class _ShopListPageState extends State<ShopListPage> {
         title: const Text("รายชื่อร้านปะยางทั้งหมด"),
         centerTitle: true,
       ),
-      body: SingleChildScrollView(
-        child: Column(
-          children: [
-            ListView.builder(
-              physics: const NeverScrollableScrollPhysics(),
-              shrinkWrap: true,
-              itemCount: shopList.length,
-              itemBuilder: (context, index) {
-                return InkWell(
-                  onTap: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => ShopDetail(
-                          shop: shopList[index],
-                          myUid: "admin",
-                        ),
-                      ),
-                    );
-                  },
-                  child: Container(
-                    padding: const EdgeInsets.all(10),
-                    margin: const EdgeInsets.fromLTRB(20, 20, 20, 0),
-                    decoration: BoxDecoration(
-                      border: Border.all(
-                        width: 1,
-                        color: Colors.blue,
-                      ),
-                    ),
-                    child: Row(
-                      children: [
-                        Expanded(
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
+      body: shopList.isNotEmpty
+          ? SingleChildScrollView(
+              child: Column(
+                children: [
+                  ListView.builder(
+                    physics: const NeverScrollableScrollPhysics(),
+                    shrinkWrap: true,
+                    itemCount: shopList.length,
+                    itemBuilder: (context, index) {
+                      return InkWell(
+                        onTap: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => ShopDetail(
+                                shop: shopList[index],
+                                myUid: "admin",
+                              ),
+                            ),
+                          );
+                        },
+                        child: Container(
+                          padding: const EdgeInsets.all(10),
+                          margin: const EdgeInsets.fromLTRB(20, 20, 20, 0),
+                          decoration: BoxDecoration(
+                            border: Border.all(
+                              width: 1,
+                              color: Colors.blue,
+                            ),
+                          ),
+                          child: Row(
                             children: [
-                              textRich(
-                                context,
-                                title: "ชื่อร้าน",
-                                value: "${shopList[index].shopName}",
+                              Expanded(
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    textRich(
+                                      context,
+                                      title: "ชื่อร้าน",
+                                      value: "${shopList[index].shopName}",
+                                    ),
+                                    textRich(
+                                      context,
+                                      title: "ชื่อเจ้าของร้าน",
+                                      value: "${shopList[index].shopOwner}",
+                                    ),
+                                    textRich(
+                                      context,
+                                      title: "อีเมล",
+                                      value: "${shopList[index].email}",
+                                    ),
+                                    textRich(
+                                      context,
+                                      title: "เบอร์โทร",
+                                      value: "${shopList[index].shopPhone}",
+                                    ),
+                                  ],
+                                ),
                               ),
-                              textRich(
-                                context,
-                                title: "ชื่อเจ้าของร้าน",
-                                value: "${shopList[index].shopOwner}",
-                              ),
-                              textRich(
-                                context,
-                                title: "อีเมล",
-                                value: "${shopList[index].email}",
-                              ),
-                              textRich(
-                                context,
-                                title: "เบอร์โทร",
-                                value: "${shopList[index].shopPhone}",
+                              const Icon(
+                                Icons.arrow_forward_ios_sharp,
+                                color: Colors.blue,
                               ),
                             ],
                           ),
                         ),
-                        const Icon(
-                          Icons.arrow_forward_ios_sharp,
-                          color: Colors.blue,
-                        ),
-                      ],
-                    ),
+                      );
+                    },
                   ),
-                );
-              },
+                  const SizedBox(height: 20),
+                ],
+              ),
+            )
+          : const Center(
+              child: Text("ไม่มีร้านปะยาง"),
             ),
-            const SizedBox(height: 20),
-          ],
-        ),
-      ),
     );
   }
 

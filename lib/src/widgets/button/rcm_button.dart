@@ -3,10 +3,14 @@ import 'package:flutter/material.dart';
 class RCMButton extends StatelessWidget {
   final Function() onTap;
   final String title;
+  final double width;
+  final double height;
   const RCMButton({
     Key? key,
     required this.onTap,
     required this.title,
+    this.width = 0,
+    this.height = 50,
   }) : super(key: key);
 
   @override
@@ -14,8 +18,8 @@ class RCMButton extends StatelessWidget {
     return InkWell(
       onTap: onTap,
       child: Container(
-        width: MediaQuery.of(context).size.width * 0.7,
-        height: 50,
+        width: width == 0 ? MediaQuery.of(context).size.width * 0.7 : width,
+        height: height,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(10),
           color: Colors.blue,

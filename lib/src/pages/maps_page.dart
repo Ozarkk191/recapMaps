@@ -34,27 +34,29 @@ class _MapsPageState extends State<MapsPage> {
         log(doc.data().toString());
         ShopModel shop = ShopModel.fromJson(jsonDecode(jsonEncode(doc.data())));
         if (shop.role == "Shop") {
-          markers.add(
-            Marker(
-              markerId: MarkerId(shop.uid!),
-              position: LatLng(shop.latitude!, shop.longitude!),
-              infoWindow: InfoWindow(
-                title: shop.shopName!,
-                snippet: shop.shopPhone!,
-                onTap: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => ShopDetail(
-                        shop: shop,
+          if (shop.approve!) {
+            markers.add(
+              Marker(
+                markerId: MarkerId(shop.uid!),
+                position: LatLng(shop.latitude!, shop.longitude!),
+                infoWindow: InfoWindow(
+                  title: shop.shopName!,
+                  snippet: shop.shopPhone!,
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => ShopDetail(
+                          shop: shop,
+                        ),
                       ),
-                    ),
-                  );
-                },
+                    );
+                  },
+                ),
+                icon: BitmapDescriptor.defaultMarker,
               ),
-              icon: BitmapDescriptor.defaultMarker,
-            ),
-          );
+            );
+          }
         }
       }
       setState(() {});

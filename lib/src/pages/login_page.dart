@@ -5,6 +5,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:recap_maps/src/model/shop_model.dart';
+import 'package:recap_maps/src/pages/admin/admin_menu_page.dart';
 import 'package:recap_maps/src/pages/admin/shop_list.dart';
 import 'package:recap_maps/src/pages/shop/shop_detail.dart';
 import 'package:recap_maps/src/widgets/button/rcm_button.dart';
@@ -58,7 +59,7 @@ class _LoginPageState extends State<LoginPage> {
             Navigator.pushReplacement(
               context,
               MaterialPageRoute(
-                builder: (context) => const ShopListPage(),
+                builder: (context) => const AdminMenuPage(),
               ),
             );
           } else {
