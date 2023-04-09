@@ -63,8 +63,24 @@ class _RegisterPageState extends State<RegisterPage> {
         open.text == "" ||
         close.text == "") {
       // to do somthing
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          content: Text("ไม่สามารถทำการสมัครได้เนื่องจากข้อมูลไม่ครบถ้วน"),
+        ),
+      );
+      setState(() {
+        loading = false;
+      });
     } else if (password.text.length < 6) {
       // to do somthing
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          content: Text("กรอกรหัสผ่านให้ 6 ตัวขึ้นไป"),
+        ),
+      );
+      setState(() {
+        loading = false;
+      });
     } else {
       register();
     }
@@ -73,9 +89,7 @@ class _RegisterPageState extends State<RegisterPage> {
   void register() {
     auth
         .createUserWithEmailAndPassword(
-      email: email.text,
-      password: password.text,
-    )
+            email: email.text, password: password.text)
         .then((user) {
       ShopModel shop = ShopModel(
         email: email.text,

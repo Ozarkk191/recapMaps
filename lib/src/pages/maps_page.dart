@@ -24,6 +24,7 @@ class _MapsPageState extends State<MapsPage> {
   Completer<GoogleMapController> controller = Completer();
   Set<Marker> markers = {};
 
+// ฟังช์ชันปักหมุดบนแผนที่
   void addMarker() async {
     FirebaseFirestore firestore = FirebaseFirestore.instance;
     await firestore
@@ -36,7 +37,7 @@ class _MapsPageState extends State<MapsPage> {
         if (shop.role == "Shop") {
           if (shop.approve!) {
             markers.add(
-              Marker(
+              Marker( 
                 markerId: MarkerId(shop.uid!),
                 position: LatLng(shop.latitude!, shop.longitude!),
                 infoWindow: InfoWindow(

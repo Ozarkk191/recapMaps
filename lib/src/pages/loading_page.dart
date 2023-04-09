@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:developer';
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -33,23 +34,16 @@ class _LoadingPageState extends State<LoadingPage> {
     );
   }
 
-  void getCurrentLocation() {
-    Geolocator.getCurrentPosition(
-            desiredAccuracy: LocationAccuracy.best,
-            forceAndroidLocationManager: true)
-        .then((Position position) {
-      Timer(const Duration(seconds: 3), () {
-        Navigator.pushReplacement(
-          context,
-          MaterialPageRoute(
-            builder: (context) => HomePage(position: position),
-          ),
-        );
-      });
-    }).catchError((e) {
-      if (kDebugMode) {
-        print(e);
-      }
+  void getCurrentLocation() async {
+    final position = GeolocatorPlatform.instance.getCurrentPosition();
+    final data = await position;
+    Timer(const Duration(seconds: 1), () {
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(
+          builder: (context) => HomePage(position: data),
+        ),
+      );
     });
   }
 
@@ -64,5 +58,6 @@ class _LoadingPageState extends State<LoadingPage> {
     } else if (status == PermissionStatus.permanentlyDenied) {
       Navigator.pop(context);
     }
+    log(status.toString());
   }
 }
